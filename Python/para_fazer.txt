@@ -1,0 +1,20 @@
+genbank
+	--GENE ID
+	--Accession number -> protain_id
+	--locus tag
+
+
+
+-- ver sequencias que estao na uniprot  (ver doc e api) buscar genoma todo em xml e ver id das nossas protainas
+-- blast na uniprot (mandar todas)
+	ficamos com seq igual a nossa
+	--podemos nao ter outras
+		ir ao ncbi bast ncbi nr, ou da uniprot nao revistas
+		no nr baixar bumero da blosum ou blast iterativo
+		base de daddos bem anotada --> patric (vai ser dificil)
+
+--alinhamentos multiplos (nao para todos)
+	se nao hover nada no blast nao fazer 
+	fazer a bem anotadas
+
+
