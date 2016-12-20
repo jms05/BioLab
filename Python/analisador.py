@@ -6,34 +6,132 @@ import re
 from Bio.Blast import NCBIWWW
 from Bio.Blast import NCBIXML
 
+
+from Bio import ExPASy
+import urllib
+from Bio import SwissProt
+from Bio.SwissProt import KeyWList
+from Bio import ExPASy
+
+import os
+import random
+from urllib.request import urlopen
+
+DNA_BASES = ["A","T","C","G"]
+PROTAIN_BASES= ['I', 'M', 'T', 'N', 'K', 'S', 'R',
+				'P', 'H', 'Q', 'V', 'A', 'D', 'E',
+				'G', 'F', 'L', 'Y', 'C', '_', 'W',]
+START_BASE = 'M'
+END_BASE = '_'
+
+DNA_COMPLEMENT = {"A":"T","T":"A","C":"G","G":"C"}
+CODONS = {
+    'ATA':'I', 'ATC':'I', 'ATT':'I', 'ATG':'M',
+    'ACA':'T', 'ACC':'T', 'ACG':'T', 'ACT':'T',
+    'AAC':'N', 'AAT':'N', 'AAA':'K', 'AAG':'K',
+    'AGC':'S', 'AGT':'S', 'AGA':'R', 'AGG':'R',
+    'CTA':'L', 'CTC':'L', 'CTG':'L', 'CTT':'L',
+    'CCA':'P', 'CCC':'P', 'CCG':'P', 'CCT':'P',
+    'CAC':'H', 'CAT':'H', 'CAA':'Q', 'CAG':'Q',
+    'CGA':'R', 'CGC':'R', 'CGG':'R', 'CGT':'R',
+    'GTA':'V', 'GTC':'V', 'GTG':'V', 'GTT':'V',
+    'GCA':'A', 'GCC':'A', 'GCG':'A', 'GCT':'A',
+    'GAC':'D', 'GAT':'D', 'GAA':'E', 'GAG':'E',
+    'GGA':'G', 'GGC':'G', 'GGG':'G', 'GGT':'G',
+    'TCA':'S', 'TCC':'S', 'TCG':'S', 'TCT':'S',
+    'TTC':'F', 'TTT':'F', 'TTA':'L', 'TTG':'L',
+    'TAC':'Y', 'TAT':'Y', 'TAA':'_', 'TAG':'_',
+    'TGC':'C', 'TGT':'C', 'TGA':'_', 'TGG':'W',
+    }
+
+
 def parseFile(filename):
 	seq_record = SeqIO.read(filename, "genbank")
 	return seq_record
 
 
-def findStrand(r):
-	strand=""
-	aux = str(re.findall("location: \[.+\:.+\]\\([+-]\)",r))
-	i=2
-	for i in xrange(1,10):
-		pass
-   	for i in range(len(aux)):
-   		if aux[i]=='(':
-   			strand=aux[i+1]
-   	print(strand)
-   	return -1
+def reverseComplement(dnaSeq):
+	comp=""
+	for base in dnaSeq:
+		comp+=DNA_COMPLEMENT[base]
+	return comp[::-1]
 
-def blastuniprot(seq):
-	#"http://www.uniprot.org/blast/uniprot/B201612208A530B6CA0138AFAA6D2B97CE8C2A924B8F0ECU"
-	r = requests.get("http://www.uniprot.org/blast/uniprot/"+seq+"/")
-	print(str(r))
+def parseSwissProt(txt):
+	f =open("tmp.dat","w")
+	f.write(txt.decode('utf-8'))
+	f.close()
+	handle = open("tmp.dat")
+	record = SwissProt.read(handle)
+	print (str(record))
+	#print(str(record))
 
-def procuraUni(idp):
-	params = {"query": idp, "format": "fasta"}
+
+def getinfosfromgem(genbank):
+	ACC = "NC_002942"
+	ret =[]
+	i=0
+	dna = genbank.seq
+	for feat in rec.features:
+		#pri(str(feat))
+		if feat.type == 'CDS':
+			strand  = str(feat.location).split("]")[1]
+			inter= str(feat.location).split("]")[0].replace("[","")
+			start = int(inter.split(":")[0])
+			end = int(inter.split(":")[1])
+			
+			if(strand=="(-)"):
+				strand="reverse"
+				seqdnaprot= reverseComplement(dna[start:end])
+			else:
+				strand="forward"
+				seqdnaprot= (dna[start:end])
+
+			geneID = feat.qualifiers["db_xref"][0]
+			ID_prot = feat.qualifiers["protein_id"][0]
+			try:
+				function= feat.qualifiers["function"][0]
+			except Exception:
+				function= "Unknown"
+			try:
+				genName= feat.qualifiers["gene"][0]
+			except Exception:
+				genName= "-"
+
+			tradu = feat.qualifiers["translation"][0]
+			locus = feat.qualifiers["locus_tag"][0]
+			prorainNAme = feat.qualifiers["product"][0]
+			try:
+				ecNumber = feat.qualifiers["EC_number"][0]
+			except Exception:
+				ecNumber= "-"
+			geninfo = (geneID,ACC,locus,genName,strand,seqdnaprot)
+			protinfo = ("uniorotID_rev",ID_prot,prorainNAme,len(tradu),"local",function,tradu)
+			ret.append((geninfo,protinfo,ecNumber))
+	return ret
+
+def download(idfasta):
+	target_url = "http://www.uniprot.org/uniprot/" + str(idfasta).split("|")[1]+ ".txt"
+	print("\n\n"+target_url+"\n\n\n")
+	ret = urlopen(target_url).read()
+	return ret
+
+def getInfouniprot(protainID):
+	params = {"query": protainID, "format": "fasta"}
 	r = requests.get("http://www.uniprot.org/uniprot/", params)
+	i=0
 	for record in SeqIO.parse(StringIO(r.text), "fasta"):
-		print(record)
-	a=input("lixo")
+		idfasta = record.id
+		break
+	txtfile = download(idfasta)
+	parst = parseSwissProt(txtfile)
+	a = input()
+		#a = input()
+
+
+
+
+
+
 
 def blast(seq):
 	print("TO Blast :" + seq )
@@ -65,7 +163,19 @@ def blast(seq):
 
 
 rec = parseFile("grupo6.txt")
+datas = getinfosfromgem(rec)
 
+for data in datas:
+	(gene,prot,ec)=data
+	(rev,ID_prot,prorainNAme,tam,local,function,tradu)=prot
+	print ("-"*20)
+	print ("EC: " + str(ec))
+	print ("GEN: " + str(gene))
+	print ("Prot: " + str(prot))
+	getInfouniprot(ID_prot)
+	print ("-"*20)
+	#a  =input()
+'''
 seq=""
 
 i=0
@@ -89,7 +199,7 @@ for feat in rec.features:
 		
 
 print ("Total: " + str(i))
-
+'''
 
 
 

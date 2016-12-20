@@ -1,0 +1,65 @@
+ID   Q5ZWC9_LEGPH            Unreviewed;       398 AA.
+AC   Q5ZWC9;
+DT   23-NOV-2004, integrated into UniProtKB/TrEMBL.
+DT   23-NOV-2004, sequence version 1.
+DT   02-NOV-2016, entry version 50.
+DE   SubName: Full=Aminopeptidase {ECO:0000313|EMBL:AAU27242.1};
+GN   OrderedLocusNames=lpg1156 {ECO:0000313|EMBL:AAU27242.1};
+OS   Legionella pneumophila subsp. pneumophila (strain Philadelphia 1 /
+OS   ATCC 33152 / DSM 7513).
+OC   Bacteria; Proteobacteria; Gammaproteobacteria; Legionellales;
+OC   Legionellaceae; Legionella.
+OX   NCBI_TaxID=272624 {ECO:0000313|EMBL:AAU27242.1, ECO:0000313|Proteomes:UP000000609};
+RN   [1] {ECO:0000313|EMBL:AAU27242.1, ECO:0000313|Proteomes:UP000000609}
+RP   NUCLEOTIDE SEQUENCE [LARGE SCALE GENOMIC DNA].
+RC   STRAIN=Philadelphia 1 / ATCC 33152 / DSM 7513
+RC   {ECO:0000313|Proteomes:UP000000609};
+RX   PubMed=15448271; DOI=10.1126/science.1099776;
+RA   Chien M., Morozova I., Shi S., Sheng H., Chen J., Gomez S.M.,
+RA   Asamani G., Hill K., Nuara J., Feder M., Rineer J., Greenberg J.J.,
+RA   Steshenko V., Park S.H., Zhao B., Teplitskaya E., Edwards J.R.,
+RA   Pampou S., Georghiou A., Chou I.C., Iannuccilli W., Ulz M.E.,
+RA   Kim D.H., Geringer-Sameth A., Goldsberry C., Morozov P., Fischer S.G.,
+RA   Segal G., Qu X., Rzhetsky A., Zhang P., Cayanis E., De Jong P.J.,
+RA   Ju J., Kalachikov S., Shuman H.A., Russo J.J.;
+RT   "The genomic sequence of the accidental pathogen Legionella
+RT   pneumophila.";
+RL   Science 305:1966-1968(2004).
+CC   -----------------------------------------------------------------------
+CC   Copyrighted by the UniProt Consortium, see http://www.uniprot.org/terms
+CC   Distributed under the Creative Commons Attribution-NoDerivs License
+CC   -----------------------------------------------------------------------
+DR   EMBL; AE017354; AAU27242.1; -; Genomic_DNA.
+DR   RefSeq; WP_010946890.1; NC_002942.5.
+DR   RefSeq; YP_095189.1; NC_002942.5.
+DR   ProteinModelPortal; Q5ZWC9; -.
+DR   STRING; 272624.lpg1156; -.
+DR   PaxDb; Q5ZWC9; -.
+DR   EnsemblBacteria; AAU27242; AAU27242; lpg1156.
+DR   GeneID; 19832721; -.
+DR   KEGG; lpn:lpg1156; -.
+DR   PATRIC; 22329380; VBILegPne29832_1216.
+DR   eggNOG; COG2234; LUCA.
+DR   HOGENOM; HOG000277862; -.
+DR   OMA; EYLTWIT; -.
+DR   Proteomes; UP000000609; Chromosome.
+DR   GO; GO:0004177; F:aminopeptidase activity; IEA:UniProtKB-KW.
+DR   InterPro; IPR007484; Peptidase_M28.
+DR   Pfam; PF04389; Peptidase_M28; 1.
+PE   4: Predicted;
+KW   Aminopeptidase {ECO:0000313|EMBL:AAU27242.1};
+KW   Complete proteome {ECO:0000313|Proteomes:UP000000609};
+KW   Hydrolase {ECO:0000313|EMBL:AAU27242.1};
+KW   Protease {ECO:0000313|EMBL:AAU27242.1};
+KW   Reference proteome {ECO:0000313|Proteomes:UP000000609}.
+FT   DOMAIN      208    391       Peptidase_M28.
+FT                                {ECO:0000259|Pfam:PF04389}.
+SQ   SEQUENCE   398 AA;  44325 MW;  BF41C560A23D7771 CRC64;
+     MLEYLTWITA NIVLVSNSIF GTPHPVHAQL QVPQCLAAKM TTAHDVLAEN EQFKIIDLPG
+     SDIENVTLLA EQVNCGDFID VTDKFSDTLL TAKRKSAKNI LQSSALTALK KSQEDKNIYE
+     IKHQKEVNAA IKEVVADNIW QTLNHLTSYS NRSATKDTGV AAANWLKSEF ETMAMEYNRR
+     DTATFLVKAG WYKQPSLVTV IGKELKTPAI VIGAPMDTLD GNMPGADEGS GAAAIMESTR
+     ILLASKLKFK HPIYIIWYAA SDRNLAGSQY VVQYFQEKSI PVKAVLQLNK TGFRANSDDS
+     TMWVFTDNTN NDLNQYIAKL IKNYIHTPVN FSQCNYECGD HISWSQENIP VTYAVESDFK
+     NLNPYIGSSS DTMDFLNLEH IANFSKLAIA FSIELGSK
+//
