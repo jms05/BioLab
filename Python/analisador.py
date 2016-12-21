@@ -214,9 +214,9 @@ def blast(seq):
 	raw_input()
 
 
-def shortSeq(sequence,tam,sep):
+def shortSeq(sequence,tam):
 	start = sequence[:tam]
-	end = sequence[:(-1*tam)]
+	end = sequence[(-1*tam):]
 	return(start+"..."+end)
 
 def juntaFuncoes(listaF,fungb,sep):
@@ -224,7 +224,12 @@ def juntaFuncoes(listaF,fungb,sep):
 	for f in listaF:
 		ret += (sep+f)
 	return ret
-	
+
+def juntaLista(lista,sep):
+	ret = ""
+	for elem in lista:
+		ret += elem+sep
+	return ret[:-1]
 
 def createCVSRecord(gbData,swissData,sep):
 	grauRev = "---"
@@ -233,20 +238,47 @@ def createCVSRecord(gbData,swissData,sep):
 	(lixo,assNCBI,protName,protLen,lixo2,protFungb,protSeq) = protInfo
 	(idSwiss,parse) = swissData
 	(protStatus,protLocal,funcaoMolec,processBiol,funcoes) = parse
+	funcaoMolec = juntaLista (funcaoMolec, "_")
+	processBiol = juntaLista( processBiol,"_")
+	if(funcaoMolec==""):
+		funcaoMolec="-"
+	if(processBiol==""):
+		processBiol="-"
 	funcoes = juntaFuncoes(funcoes,protFungb,"_")
-	return "ola"
+	geneID=geneID.split(":")[1]
+	##feito na
+	data = geneID+sep+geneName+sep+NCIgual+sep+locusTag+sep+strand+sep+shortSeq(dnaSeq,7)
+	data = data + sep + assNCBI+ sep+idSwiss+sep+protName+sep+shortSeq(protSeq,7)
+	data = data+ sep+ str(protLen)+ sep+ protStatus+ sep + grauRev + sep + protLocal
+	data = data +sep +EC+ sep + funcaoMolec+ sep+ processBiol+ sep + funcoes
+
+	return data
 
 
-
+sep =";"
 rec = parseFile("grupo6.txt")
 datas = getinfosfromgem(rec)
+filecsv = open("tabela.csv","w")
+filecsv.write("sep="+sep+"\n")
 
+cabeca="geneID"+sep+"GeneName"+sep+"GeneAccessNumber"+sep+"locusTag"+sep+"strand"+sep+"DNA_SEQ"
+cabeca+=sep+"AccessNumberNCBI"+sep+"idSwiss"+sep+"protName"+sep+"PROT_SEQ"
+cabeca+=sep+"PROT_Tamanho"+sep+"protStatus"+sep+"grauRev"+sep+"protLocal"
+cabeca+=sep+"EC"+sep+"(GO)funcaoMolec"+sep+"(GO)processBiol"+sep+"funcoes"+sep
+
+filecsv.write(cabeca+"\n")
+
+i=1
 for data in datas:
 	(gene,prot,ec)=data
 	(rev,ID_prot,prorainNAme,tam,local,function,tradu)=prot
 	swissinfo = getInfouniprot(ID_prot)
-	dataCS  = createCVSRecord(data,swissinfo,",")
-	print(dataCS)
+	dataCS  = createCVSRecord(data,swissinfo,sep)
+	filecsv.write(dataCS+"\n");
+	print("mais UMA: "  + str(i)) 
+	i=i+1
+
+filecsv.close()
 '''
 	(gene,prot,ec)=data
 	(rev,ID_prot,prorainNAme,tam,local,function,tradu)=prot

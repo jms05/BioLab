@@ -1,63 +1,110 @@
-ID   Y1167_LEGPH             Reviewed;         161 AA.
-AC   Q5ZWB8;
-DT   28-NOV-2006, integrated into UniProtKB/Swiss-Prot.
-DT   28-NOV-2006, sequence version 2.
-DT   02-NOV-2016, entry version 63.
-DE   RecName: Full=UPF0234 protein lpg1167 {ECO:0000255|HAMAP-Rule:MF_00632};
-GN   OrderedLocusNames=lpg1167;
+ID   Q5ZWB1_LEGPH            Unreviewed;       442 AA.
+AC   Q5ZWB1;
+DT   23-NOV-2004, integrated into UniProtKB/TrEMBL.
+DT   23-NOV-2004, sequence version 1.
+DT   02-NOV-2016, entry version 97.
+DE   SubName: Full=Two component response regulator PilR {ECO:0000313|EMBL:AAU27260.1};
+GN   Name=pilR {ECO:0000313|EMBL:AAU27260.1};
+GN   OrderedLocusNames=lpg1174 {ECO:0000313|EMBL:AAU27260.1};
 OS   Legionella pneumophila subsp. pneumophila (strain Philadelphia 1 /
 OS   ATCC 33152 / DSM 7513).
 OC   Bacteria; Proteobacteria; Gammaproteobacteria; Legionellales;
 OC   Legionellaceae; Legionella.
-OX   NCBI_TaxID=272624;
-RN   [1]
+OX   NCBI_TaxID=272624 {ECO:0000313|EMBL:AAU27260.1, ECO:0000313|Proteomes:UP000000609};
+RN   [1] {ECO:0000313|EMBL:AAU27260.1, ECO:0000313|Proteomes:UP000000609}
 RP   NUCLEOTIDE SEQUENCE [LARGE SCALE GENOMIC DNA].
-RC   STRAIN=Philadelphia 1 / ATCC 33152 / DSM 7513;
+RC   STRAIN=Philadelphia 1 / ATCC 33152 / DSM 7513
+RC   {ECO:0000313|Proteomes:UP000000609};
 RX   PubMed=15448271; DOI=10.1126/science.1099776;
 RA   Chien M., Morozova I., Shi S., Sheng H., Chen J., Gomez S.M.,
 RA   Asamani G., Hill K., Nuara J., Feder M., Rineer J., Greenberg J.J.,
 RA   Steshenko V., Park S.H., Zhao B., Teplitskaya E., Edwards J.R.,
-RA   Pampou S., Georghiou A., Chou I.-C., Iannuccilli W., Ulz M.E.,
+RA   Pampou S., Georghiou A., Chou I.C., Iannuccilli W., Ulz M.E.,
 RA   Kim D.H., Geringer-Sameth A., Goldsberry C., Morozov P., Fischer S.G.,
 RA   Segal G., Qu X., Rzhetsky A., Zhang P., Cayanis E., De Jong P.J.,
 RA   Ju J., Kalachikov S., Shuman H.A., Russo J.J.;
 RT   "The genomic sequence of the accidental pathogen Legionella
 RT   pneumophila.";
 RL   Science 305:1966-1968(2004).
-CC   -!- SIMILARITY: Belongs to the UPF0234 family. {ECO:0000255|HAMAP-
-CC       Rule:MF_00632}.
-CC   -!- SEQUENCE CAUTION:
-CC       Sequence=AAU27253.1; Type=Erroneous initiation; Evidence={ECO:0000305};
+CC   -!- SIMILARITY: Contains 1 sigma-54 factor interaction domain.
+CC       {ECO:0000256|RuleBase:RU000717}.
 CC   -----------------------------------------------------------------------
 CC   Copyrighted by the UniProt Consortium, see http://www.uniprot.org/terms
 CC   Distributed under the Creative Commons Attribution-NoDerivs License
 CC   -----------------------------------------------------------------------
-DR   EMBL; AE017354; AAU27253.1; ALT_INIT; Genomic_DNA.
-DR   RefSeq; WP_010946901.1; NC_002942.5.
-DR   RefSeq; YP_095200.2; NC_002942.5.
-DR   ProteinModelPortal; Q5ZWB8; -.
-DR   STRING; 272624.lpg1167; -.
-DR   PaxDb; Q5ZWB8; -.
-DR   EnsemblBacteria; AAU27253; AAU27253; lpg1167.
-DR   GeneID; 19832732; -.
-DR   KEGG; lpn:lpg1167; -.
-DR   PATRIC; 22329406; VBILegPne29832_1229.
-DR   eggNOG; ENOG4108VPT; Bacteria.
-DR   eggNOG; COG1666; LUCA.
-DR   HOGENOM; HOG000249184; -.
-DR   KO; K09767; -.
+DR   EMBL; AE017354; AAU27260.1; -; Genomic_DNA.
+DR   RefSeq; WP_010946908.1; NC_002942.5.
+DR   RefSeq; YP_095207.1; NC_002942.5.
+DR   ProteinModelPortal; Q5ZWB1; -.
+DR   STRING; 272624.lpg1174; -.
+DR   PaxDb; Q5ZWB1; -.
+DR   DNASU; 3080237; -.
+DR   EnsemblBacteria; AAU27260; AAU27260; lpg1174.
+DR   GeneID; 19832739; -.
+DR   KEGG; lpn:lpg1174; -.
+DR   PATRIC; 22329420; VBILegPne29832_1236.
+DR   eggNOG; ENOG4105C1W; Bacteria.
+DR   eggNOG; COG2204; LUCA.
+DR   HOGENOM; HOG000058489; -.
+DR   KO; K02667; -.
+DR   OMA; LRMPTLR; -.
 DR   Proteomes; UP000000609; Chromosome.
-DR   CDD; cd11740; YajQ_like; 1.
-DR   HAMAP; MF_00632; UPF0234; 1.
-DR   InterPro; IPR007551; DUF520.
-DR   Pfam; PF04461; DUF520; 1.
-DR   SUPFAM; SSF89963; SSF89963; 2.
-PE   3: Inferred from homology;
-KW   Complete proteome; Reference proteome.
-FT   CHAIN         1    161       UPF0234 protein lpg1167.
-FT                                /FTId=PRO_0000261946.
-SQ   SEQUENCE   161 AA;  18517 MW;  D35AB95FC3F885C1 CRC64;
-     MPSFDIVSKM NEVDLRNAVD NAVREVSTRF DFRGVEATIE LKDLTVTLRS ESDFQVRQLE
-     DLFRNHCSKR NLSTSGVEIE DEPVHSGKFY TLTMTFKQGI DQPTAKEIVK YIKDTKAKVQ
-     TSIQGDKVRV TGKKRDDLQE TIALLKKSNI ELPLQYENFR D
+DR   GO; GO:0005622; C:intracellular; IEA:GOC.
+DR   GO; GO:0005524; F:ATP binding; IEA:UniProtKB-KW.
+DR   GO; GO:0043565; F:sequence-specific DNA binding; IEA:InterPro.
+DR   GO; GO:0000160; P:phosphorelay signal transduction system; IEA:UniProtKB-KW.
+DR   GO; GO:0006355; P:regulation of transcription, DNA-templated; IEA:UniProtKB-KW.
+DR   GO; GO:0006351; P:transcription, DNA-templated; IEA:UniProtKB-KW.
+DR   Gene3D; 1.10.10.60; -; 1.
+DR   Gene3D; 3.40.50.300; -; 1.
+DR   InterPro; IPR003593; AAA+_ATPase.
+DR   InterPro; IPR011006; CheY-like_superfamily.
+DR   InterPro; IPR009057; Homeodomain-like.
+DR   InterPro; IPR002197; HTH_Fis.
+DR   InterPro; IPR027417; P-loop_NTPase.
+DR   InterPro; IPR001789; Sig_transdc_resp-reg_receiver.
+DR   InterPro; IPR002078; Sigma_54_int.
+DR   InterPro; IPR025662; Sigma_54_int_dom_ATP-bd_1.
+DR   InterPro; IPR025943; Sigma_54_int_dom_ATP-bd_2.
+DR   InterPro; IPR025944; Sigma_54_int_dom_CS.
+DR   Pfam; PF02954; HTH_8; 1.
+DR   Pfam; PF00072; Response_reg; 1.
+DR   Pfam; PF00158; Sigma54_activat; 1.
+DR   PRINTS; PR01590; HTHFIS.
+DR   SMART; SM00382; AAA; 1.
+DR   SMART; SM00448; REC; 1.
+DR   SUPFAM; SSF46689; SSF46689; 1.
+DR   SUPFAM; SSF52172; SSF52172; 1.
+DR   SUPFAM; SSF52540; SSF52540; 1.
+DR   PROSITE; PS50110; RESPONSE_REGULATORY; 1.
+DR   PROSITE; PS00675; SIGMA54_INTERACT_1; 1.
+DR   PROSITE; PS00676; SIGMA54_INTERACT_2; 1.
+DR   PROSITE; PS00688; SIGMA54_INTERACT_3; 1.
+DR   PROSITE; PS50045; SIGMA54_INTERACT_4; 1.
+PE   4: Predicted;
+KW   ATP-binding {ECO:0000256|RuleBase:RU000717,
+KW   ECO:0000256|SAAS:SAAS00473007};
+KW   Complete proteome {ECO:0000313|Proteomes:UP000000609};
+KW   DNA-binding {ECO:0000256|SAAS:SAAS00421512};
+KW   Nucleotide-binding {ECO:0000256|RuleBase:RU000717,
+KW   ECO:0000256|SAAS:SAAS00473007};
+KW   Reference proteome {ECO:0000313|Proteomes:UP000000609};
+KW   Transcription {ECO:0000256|RuleBase:RU000717,
+KW   ECO:0000256|SAAS:SAAS00516031};
+KW   Transcription regulation {ECO:0000256|RuleBase:RU000717,
+KW   ECO:0000256|SAAS:SAAS00516031};
+KW   Two-component regulatory system {ECO:0000256|SAAS:SAAS00421752}.
+FT   DOMAIN        5    119       Response regulatory.
+FT                                {ECO:0000259|PROSITE:PS50110}.
+FT   DOMAIN      134    363       Sigma-54 factor interaction.
+FT                                {ECO:0000259|PROSITE:PS50045}.
+SQ   SEQUENCE   442 AA;  49283 MW;  BAF7124B76E29F6E CRC64;
+     MIKSKVLVID DEPDIRELLT LTLSRMGLIC DAVSDFKQGI EHIKQNYYSL VLTDMRLPDG
+     DGIEIVKFIQ KYKPQLPVAV ITAYGNVEGA VNTLKAGAFD YVSKPVDLKM LRELVKTALS
+     MQNPSTESPD EGLLVGESLI MQQLRESIHK LARSQAPVFI QGDSGVGKEL VAQLIHANGP
+     RKDKPFIPVN CGAIPGELME SEFFGHKKGS FTGAISDKTG LFVAAHGGTL FLDEIAELPL
+     AMQVKLLRAI QEKAIKPIGE LYEIPVDVRI LSASHKNLIE EINAGRFRQD LYYRINVIEL
+     RVPTLMERLS DIPCLTEAIL KKLSKNQNRN LVKINPSCFE ILSRYHFPGN VRELENILER
+     AMAMCEGEVI EPSDLHLPRT TITPAVAVPS TSTNLNGYLQ DQEKELILDA LEKTKWNRTA
+     AAQLLGVSFR TLRYRLKKLG LD
 //
