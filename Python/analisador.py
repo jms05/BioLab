@@ -59,8 +59,12 @@ def reverseComplement(dnaSeq):
 
 def parseXML(textxml):
 	starf= False
+	satrtG = False
+	startFeat = False
 	functions = []
 	function = ""
+	name  =""
+	domains = []
 	for line in textxml.splitlines():
 		if "<comment type=\"function\">" in line:
 			starf  =True
@@ -72,10 +76,38 @@ def parseXML(textxml):
 		if(starf):
 			function+=(line.strip())
 
+		if "<feature" in line:
+			startFeat=True
+		if "</feature>" in line:
+			startFeat=False
+		if(startFeat):
+			if "type=\"domain\"" in line:
+				campos = line.split()
+				for campo in campos:
+					if "description" in campo:
+						interesse = campo.split("=")[1].replace("\"","")
+						domains.append(interesse)
+		if "<gene>" in line:
+			satrtG=True
+		if "</gene>" in line:
+			satrtG=False
+		if(satrtG):
+			if "primary" in line:
+				name = line.split(">")[1].split("<")[0]
+
 	ret = []
 	for fun in functions:
 		ret.append(fun.split("<")[-2].split(">")[1])	
-	return(ret)
+	if(name ==""):
+		name = "-"
+
+	domianTex = ""
+	for domain in domains:
+		domianTex+=(domain+"|")
+
+	if domianTex=="":
+		domianTex="-"
+	return(ret,name,domianTex)
 
 
 
@@ -85,7 +117,8 @@ def parseTXT(record):
 		status = str(record.data_class)
 	except Exception:
 		status= "-"
-	local = "--"
+	local = "-"
+	name = "-"
 	funcMolec = []
 	bioPro = []
 	for cr in record.cross_references:
@@ -116,8 +149,8 @@ def parseSwissProt(idswiss):
 	handle = open("tmp.dat")
 	(status,local,funcMol,bioPro) = parseTXT(SwissProt.read(handle))
 	#parse ao txt feito
-	functions  = parseXML(xml.decode('utf-8'))
-	return(status,local,funcMol,bioPro,functions)
+	(functions,name,domianTex)  = parseXML(xml.decode('utf-8'))
+	return(status,local,funcMol,bioPro,functions,name,domianTex)
 	#print(str(record))
 
 
@@ -179,42 +212,8 @@ def getInfouniprot(protainID):
 
 
 
-
-
-
-
-
-
-def blast(seq):
-	print("TO Blast :" + seq )
-	#fasta_string = open("m_cold.fasta").read()
-	result=NCBIWWW.qblast("blastp","swissprot ",seq)
-	
-	save_file=open("blastteste.xml","w")
-	save_file.write(result.read())
-	save_file.close()
-	result.close()
-	
-	
-	resultxml = open("blastteste.xml") 
-	blast= NCBIXML.parse(resultxml)
-	
-	E_VALUE_THRESH = 0.05
-	for blast_record in blast:
-	    for alignment in blast_record.alignments:
-	        for hsp in alignment.hsps:
-	            if hsp.expect < E_VALUE_THRESH:
-	                print ('\n')
-	                print ('****Alignment****')
-	                print ('sequence:'+ str(alignment.title))
-	                print ('e value:'+  str(hsp.expect))
-	                print (hsp.query[0:75])
-	                print (hsp.match[0:75])
-	                print (hsp.sbjct[0:75])
-	raw_input()
-
-
 def shortSeq(sequence,tam):
+	return sequence # tirar isto para fazer short
 	start = sequence[:tam]
 	end = sequence[(-1*tam):]
 	return(start+"..."+end)
@@ -237,7 +236,7 @@ def createCVSRecord(gbData,swissData,sep):
 	(geneID,NCIgual,locusTag,geneName,strand,dnaSeq) =genInfo
 	(lixo,assNCBI,protName,protLen,lixo2,protFungb,protSeq) = protInfo
 	(idSwiss,parse) = swissData
-	(protStatus,protLocal,funcaoMolec,processBiol,funcoes) = parse
+	(protStatus,protLocal,funcaoMolec,processBiol,funcoes,geneNameSwiss,domianTex) = parse
 	funcaoMolec = juntaLista (funcaoMolec, "_")
 	processBiol = juntaLista( processBiol,"_")
 	if(funcaoMolec==""):
@@ -247,10 +246,12 @@ def createCVSRecord(gbData,swissData,sep):
 	funcoes = juntaFuncoes(funcoes,protFungb,"_")
 	geneID=geneID.split(":")[1]
 	##feito na
+	if(geneName=="-"):
+		geneName = geneNameSwiss
 	data = geneID+sep+geneName+sep+NCIgual+sep+locusTag+sep+strand+sep+shortSeq(dnaSeq,7)
 	data = data + sep + assNCBI+ sep+idSwiss+sep+protName+sep+shortSeq(protSeq,7)
 	data = data+ sep+ str(protLen)+ sep+ protStatus+ sep + grauRev + sep + protLocal
-	data = data +sep +EC+ sep + funcaoMolec+ sep+ processBiol+ sep + funcoes
+	data = data +sep +EC+ sep + funcaoMolec+ sep+ processBiol+ sep + funcoes+ sep + domianTex
 
 	return data
 
@@ -258,13 +259,13 @@ def createCVSRecord(gbData,swissData,sep):
 sep =";"
 rec = parseFile("grupo6.txt")
 datas = getinfosfromgem(rec)
-filecsv = open("tabela.csv","w")
+filecsv = open("tabela_com_seq_Completa.csv","w")
 filecsv.write("sep="+sep+"\n")
 
 cabeca="geneID"+sep+"GeneName"+sep+"GeneAccessNumber"+sep+"locusTag"+sep+"strand"+sep+"DNA_SEQ"
 cabeca+=sep+"AccessNumberNCBI"+sep+"idSwiss"+sep+"protName"+sep+"PROT_SEQ"
 cabeca+=sep+"PROT_Tamanho"+sep+"protStatus"+sep+"grauRev"+sep+"protLocal"
-cabeca+=sep+"EC"+sep+"(GO)funcaoMolec"+sep+"(GO)processBiol"+sep+"funcoes"+sep
+cabeca+=sep+"EC"+sep+"(GO)funcaoMolec"+sep+"(GO)processBiol"+sep+"funcoes"+sep+"Domain"
 
 filecsv.write(cabeca+"\n")
 
@@ -279,46 +280,3 @@ for data in datas:
 	i=i+1
 
 filecsv.close()
-'''
-	(gene,prot,ec)=data
-	(rev,ID_prot,prorainNAme,tam,local,function,tradu)=prot
-	print ("-"*20)
-	print ("EC: " + str(ec))
-	print ("GEN: " + str(gene))
-	print ("Prot: " + str(prot))
-	swissinfo = getInfouniprot(ID_prot)
-	print("UNIPROT id :" + str(swissinfo[0]))
-	print("UNIPROT uniprot :" + str(swissinfo[1:]))
-	print ("-"*20)
-	a  =input()
-'''	
-'''
-seq=""
-
-i=0
-for feat in rec.features:
-	findStrand(str(feat))
-	if feat.type == 'CDS':
-		i+=1
-		print ("xref -> " + feat.qualifiers["db_xref"][0])
-		print ("ID_prot -> " + feat.qualifiers["protein_id"][0])
-		try:
-			print ("Funcao-> " + feat.qualifiers["function"][0])
-		except Exception:
-			print ("Funcao-> Unknown")
-		
-		print ("Traducao -> " + feat.qualifiers["translation"][0])
-		procuraUni(feat.qualifiers["protein_id"][0])
-		blastuniprot(feat.qualifiers["translation"][0])
-		print("-"*20)
-		#if(feat.qualifiers["function"][0]!= "Unknown"):
-			#blast(feat.qualifiers["translation"][0])
-		
-
-print ("Total: " + str(i))
-'''
-
-
-
-
-
