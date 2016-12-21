@@ -1,16 +1,20 @@
-ID   Q5ZWC9_LEGPH            Unreviewed;       398 AA.
-AC   Q5ZWC9;
+ID   Q5ZWC1_LEGPH            Unreviewed;       384 AA.
+AC   Q5ZWC1;
 DT   23-NOV-2004, integrated into UniProtKB/TrEMBL.
 DT   23-NOV-2004, sequence version 1.
-DT   02-NOV-2016, entry version 50.
-DE   SubName: Full=Aminopeptidase {ECO:0000313|EMBL:AAU27242.1};
-GN   OrderedLocusNames=lpg1156 {ECO:0000313|EMBL:AAU27242.1};
+DT   30-NOV-2016, entry version 78.
+DE   RecName: Full=Acetylornithine deacetylase {ECO:0000256|SAAS:SAAS00645894};
+DE            EC=3.-.-.- {ECO:0000256|SAAS:SAAS00658576};
+DE            EC=3.5.1.- {ECO:0000256|SAAS:SAAS00658573};
+DE            EC=3.5.1.16 {ECO:0000256|SAAS:SAAS00645882};
+GN   Name=argE {ECO:0000313|EMBL:AAU27250.1};
+GN   OrderedLocusNames=lpg1164 {ECO:0000313|EMBL:AAU27250.1};
 OS   Legionella pneumophila subsp. pneumophila (strain Philadelphia 1 /
 OS   ATCC 33152 / DSM 7513).
 OC   Bacteria; Proteobacteria; Gammaproteobacteria; Legionellales;
 OC   Legionellaceae; Legionella.
-OX   NCBI_TaxID=272624 {ECO:0000313|EMBL:AAU27242.1, ECO:0000313|Proteomes:UP000000609};
-RN   [1] {ECO:0000313|EMBL:AAU27242.1, ECO:0000313|Proteomes:UP000000609}
+OX   NCBI_TaxID=272624 {ECO:0000313|EMBL:AAU27250.1, ECO:0000313|Proteomes:UP000000609};
+RN   [1] {ECO:0000313|EMBL:AAU27250.1, ECO:0000313|Proteomes:UP000000609}
 RP   NUCLEOTIDE SEQUENCE [LARGE SCALE GENOMIC DNA].
 RC   STRAIN=Philadelphia 1 / ATCC 33152 / DSM 7513
 RC   {ECO:0000313|Proteomes:UP000000609};
@@ -25,41 +29,77 @@ RA   Ju J., Kalachikov S., Shuman H.A., Russo J.J.;
 RT   "The genomic sequence of the accidental pathogen Legionella
 RT   pneumophila.";
 RL   Science 305:1966-1968(2004).
+CC   -!- CATALYTIC ACTIVITY: N(2)-acetyl-L-ornithine + H(2)O = acetate + L-
+CC       ornithine. {ECO:0000256|SAAS:SAAS00645876}.
+CC   -!- COFACTOR:
+CC       Name=Co(2+); Xref=ChEBI:CHEBI:48828;
+CC         Evidence={ECO:0000256|SAAS:SAAS00645898};
+CC   -!- COFACTOR:
+CC       Name=Zn(2+); Xref=ChEBI:CHEBI:29105;
+CC         Evidence={ECO:0000256|SAAS:SAAS00645889};
+CC   -!- COFACTOR:
+CC       Name=glutathione; Xref=ChEBI:CHEBI:57925;
+CC         Evidence={ECO:0000256|SAAS:SAAS00645883};
+CC   -!- PATHWAY: Amino-acid biosynthesis; L-arginine biosynthesis; L-
+CC       ornithine from N(2)-acetyl-L-ornithine (linear): step 1/1.
+CC       {ECO:0000256|SAAS:SAAS00645893}.
+CC   -!- SUBUNIT: Homodimer. {ECO:0000256|SAAS:SAAS00645896}.
+CC   -!- SIMILARITY: Belongs to the peptidase M20A family. ArgE subfamily.
+CC       {ECO:0000256|SAAS:SAAS00645884}.
 CC   -----------------------------------------------------------------------
 CC   Copyrighted by the UniProt Consortium, see http://www.uniprot.org/terms
 CC   Distributed under the Creative Commons Attribution-NoDerivs License
 CC   -----------------------------------------------------------------------
-DR   EMBL; AE017354; AAU27242.1; -; Genomic_DNA.
-DR   RefSeq; WP_010946890.1; NC_002942.5.
-DR   RefSeq; YP_095189.1; NC_002942.5.
-DR   ProteinModelPortal; Q5ZWC9; -.
-DR   STRING; 272624.lpg1156; -.
-DR   PaxDb; Q5ZWC9; -.
-DR   EnsemblBacteria; AAU27242; AAU27242; lpg1156.
-DR   GeneID; 19832721; -.
-DR   KEGG; lpn:lpg1156; -.
-DR   PATRIC; 22329380; VBILegPne29832_1216.
-DR   eggNOG; COG2234; LUCA.
-DR   HOGENOM; HOG000277862; -.
-DR   OMA; EYLTWIT; -.
+DR   EMBL; AE017354; AAU27250.1; -; Genomic_DNA.
+DR   RefSeq; WP_010946898.1; NC_002942.5.
+DR   RefSeq; YP_095197.1; NC_002942.5.
+DR   ProteinModelPortal; Q5ZWC1; -.
+DR   STRING; 272624.lpg1164; -.
+DR   PaxDb; Q5ZWC1; -.
+DR   EnsemblBacteria; AAU27250; AAU27250; lpg1164.
+DR   GeneID; 19832729; -.
+DR   KEGG; lpn:lpg1164; -.
+DR   PATRIC; 22329396; VBILegPne29832_1224.
+DR   eggNOG; ENOG4105CWC; Bacteria.
+DR   eggNOG; COG0624; LUCA.
+DR   HOGENOM; HOG000243772; -.
+DR   KO; K01438; -.
+DR   OMA; NTIPALC; -.
+DR   UniPathway; UPA00068; UER00110.
 DR   Proteomes; UP000000609; Chromosome.
-DR   GO; GO:0004177; F:aminopeptidase activity; IEA:UniProtKB-KW.
-DR   InterPro; IPR007484; Peptidase_M28.
-DR   Pfam; PF04389; Peptidase_M28; 1.
-PE   4: Predicted;
-KW   Aminopeptidase {ECO:0000313|EMBL:AAU27242.1};
+DR   GO; GO:0005737; C:cytoplasm; IEA:InterPro.
+DR   GO; GO:0008777; F:acetylornithine deacetylase activity; IEA:UniProtKB-EC.
+DR   GO; GO:0046872; F:metal ion binding; IEA:UniProtKB-KW.
+DR   GO; GO:0008237; F:metallopeptidase activity; IEA:InterPro.
+DR   GO; GO:0006526; P:arginine biosynthetic process; IEA:UniProtKB-UniPathway.
+DR   CDD; cd03894; M20_ArgE; 1.
+DR   Gene3D; 3.30.70.360; -; 1.
+DR   InterPro; IPR010169; AcOrn-deacetyl.
+DR   InterPro; IPR001261; ArgE/DapE_CS.
+DR   InterPro; IPR002933; Peptidase_M20.
+DR   InterPro; IPR011650; Peptidase_M20_dimer.
+DR   Pfam; PF07687; M20_dimer; 1.
+DR   Pfam; PF01546; Peptidase_M20; 1.
+DR   SUPFAM; SSF55031; SSF55031; 1.
+DR   TIGRFAMs; TIGR01892; AcOrn-deacetyl; 1.
+DR   PROSITE; PS00759; ARGE_DAPE_CPG2_2; 1.
+PE   3: Inferred from homology;
+KW   Amino-acid biosynthesis {ECO:0000256|SAAS:SAAS00645891};
+KW   Arginine biosynthesis {ECO:0000256|SAAS:SAAS00645891};
+KW   Cobalt {ECO:0000256|SAAS:SAAS00645888};
 KW   Complete proteome {ECO:0000313|Proteomes:UP000000609};
-KW   Hydrolase {ECO:0000313|EMBL:AAU27242.1};
-KW   Protease {ECO:0000313|EMBL:AAU27242.1};
-KW   Reference proteome {ECO:0000313|Proteomes:UP000000609}.
-FT   DOMAIN      208    391       Peptidase_M28.
-FT                                {ECO:0000259|Pfam:PF04389}.
-SQ   SEQUENCE   398 AA;  44325 MW;  BF41C560A23D7771 CRC64;
-     MLEYLTWITA NIVLVSNSIF GTPHPVHAQL QVPQCLAAKM TTAHDVLAEN EQFKIIDLPG
-     SDIENVTLLA EQVNCGDFID VTDKFSDTLL TAKRKSAKNI LQSSALTALK KSQEDKNIYE
-     IKHQKEVNAA IKEVVADNIW QTLNHLTSYS NRSATKDTGV AAANWLKSEF ETMAMEYNRR
-     DTATFLVKAG WYKQPSLVTV IGKELKTPAI VIGAPMDTLD GNMPGADEGS GAAAIMESTR
-     ILLASKLKFK HPIYIIWYAA SDRNLAGSQY VVQYFQEKSI PVKAVLQLNK TGFRANSDDS
-     TMWVFTDNTN NDLNQYIAKL IKNYIHTPVN FSQCNYECGD HISWSQENIP VTYAVESDFK
-     NLNPYIGSSS DTMDFLNLEH IANFSKLAIA FSIELGSK
+KW   Hydrolase {ECO:0000256|SAAS:SAAS00480271,
+KW   ECO:0000313|EMBL:AAU27250.1};
+KW   Metal-binding {ECO:0000256|SAAS:SAAS00645887};
+KW   Reference proteome {ECO:0000313|Proteomes:UP000000609};
+KW   Zinc {ECO:0000256|SAAS:SAAS00645892}.
+FT   DOMAIN      172    283       M20_dimer. {ECO:0000259|Pfam:PF07687}.
+SQ   SEQUENCE   384 AA;  42707 MW;  BCE16B047B948711 CRC64;
+     MTTLDWLKQL ISFDTTSRNS NLSLIEYLAN GLNDFKINPI LIHDSKEQKA NLLATLPGKQ
+     GRLEGGIILS GHTDVVPVDG QIWDSDPFQA TVKNNKVYGR GACDMKGFIA VVMALVPQLK
+     EMNLDFPVHF AFSYDEEIGC LGVPSLIDKI VELNYQPRAC IVGEPTLMKP VVGHKGKYSY
+     RCQIHGVAAH SSLTNQGCNA IEHAASFISY LRGMANEFKK YGNRDFSYDV PYTTLTTNLI
+     KGGNAYNTIP NLCEFVFEFR NLSTDSSEDL NQKIMSYVKE ELAPSLHQDH PDSNVNLDTI
+     AKAPGLDMPI TDPFVRAAQT VCQSDKLMKV AYATEAGLFQ QAEIPTIVCG PGSIEQAHRA
+     NEYVEVEQLR LCEEFIINML RSHF
 //

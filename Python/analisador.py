@@ -56,13 +56,68 @@ def reverseComplement(dnaSeq):
 		comp+=DNA_COMPLEMENT[base]
 	return comp[::-1]
 
-def parseSwissProt(txt):
+
+def parseXML(textxml):
+	starf= False
+	functions = []
+	function = ""
+	for line in textxml.splitlines():
+		if "<comment type=\"function\">" in line:
+			starf  =True
+			function=""
+		if(("</comment>" in line) and starf):
+			starf = False
+			functions.append(function)
+
+		if(starf):
+			function+=(line.strip())
+
+	ret = []
+	for fun in functions:
+		ret.append(fun.split("<")[-2].split(">")[1])	
+	return(ret)
+
+
+
+
+def parseTXT(record):
+	try:
+		status = str(record.data_class)
+	except Exception:
+		status= "-"
+	local = "--"
+	funcMolec = []
+	bioPro = []
+	for cr in record.cross_references:
+		if(cr[0]== "GO"):
+			(tipo,ids,cool,pis) =cr
+			if(tipo=="GO"):
+				cools = str(cool).split(":")
+				if(cools[0]=='F'):
+					funcMolec.append(cools[1])
+				if (cools[0]=='P'):
+					bioPro.append(cools[1])
+				if (cools[0]=='C'):
+					local=cools[1]
+	return (status,local,funcMolec,bioPro)
+
+def downloadSwiss(idfasta,ext):
+	target_url = "http://www.uniprot.org/uniprot/" + idfasta+ "."+ext
+	ret = urlopen(target_url).read()
+	return ret
+
+def parseSwissProt(idswiss):
+	txt  =downloadSwiss(idswiss,"txt")
+	xml = downloadSwiss(idswiss,"xml")
+	#ficheirs ja aqui
 	f =open("tmp.dat","w")
 	f.write(txt.decode('utf-8'))
 	f.close()
 	handle = open("tmp.dat")
-	record = SwissProt.read(handle)
-	print (str(record))
+	(status,local,funcMol,bioPro) = parseTXT(SwissProt.read(handle))
+	#parse ao txt feito
+	functions  = parseXML(xml.decode('utf-8'))
+	return(status,local,funcMol,bioPro,functions)
 	#print(str(record))
 
 
@@ -84,7 +139,7 @@ def getinfosfromgem(genbank):
 				seqdnaprot= reverseComplement(dna[start:end])
 			else:
 				strand="forward"
-				seqdnaprot= (dna[start:end])
+				seqdnaprot= str((dna[start:end]))
 
 			geneID = feat.qualifiers["db_xref"][0]
 			ID_prot = feat.qualifiers["protein_id"][0]
@@ -109,11 +164,7 @@ def getinfosfromgem(genbank):
 			ret.append((geninfo,protinfo,ecNumber))
 	return ret
 
-def download(idfasta):
-	target_url = "http://www.uniprot.org/uniprot/" + str(idfasta).split("|")[1]+ ".txt"
-	print("\n\n"+target_url+"\n\n\n")
-	ret = urlopen(target_url).read()
-	return ret
+
 
 def getInfouniprot(protainID):
 	params = {"query": protainID, "format": "fasta"}
@@ -121,11 +172,12 @@ def getInfouniprot(protainID):
 	i=0
 	for record in SeqIO.parse(StringIO(r.text), "fasta"):
 		idfasta = record.id
+		idfasta = str(idfasta).split("|")[1]
 		break
-	txtfile = download(idfasta)
-	parst = parseSwissProt(txtfile)
-	a = input()
-		#a = input()
+	parst = parseSwissProt(idfasta)
+	return(idfasta,parst)
+
+
 
 
 
@@ -172,9 +224,11 @@ for data in datas:
 	print ("EC: " + str(ec))
 	print ("GEN: " + str(gene))
 	print ("Prot: " + str(prot))
-	getInfouniprot(ID_prot)
+	swissinfo = getInfouniprot(ID_prot)
+	print("UNIPROT id :" + str(swissinfo[0]))
+	print("UNIPROT uniprot :" + str(swissinfo[1:]))
 	print ("-"*20)
-	#a  =input()
+	a  =input()
 '''
 seq=""
 

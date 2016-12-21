@@ -5,7 +5,8 @@ genbank
 
 
 
--- ver sequencias que estao na uniprot  (ver doc e api) buscar genoma todo em xml e ver id das nossas protainas
+-- ver sequencias que estao na uniprot  (ver doc e api) buscar 
+genoma todo em xml e ver id das nossas protainas
 -- blast na uniprot (mandar todas)
 	ficamos com seq igual a nossa
 	--podemos nao ter outras
@@ -18,3 +19,13 @@ genbank
 	fazer a bem anotadas
 
 aisjdia
+
+
+--Function  ir ao xml
+--unreview ---- Data Class:
+
+
+
+--SUBCELLULAR LOCATION: (ja esta)
+
+--GO (ja esta)
