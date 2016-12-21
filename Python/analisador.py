@@ -135,10 +135,10 @@ def getinfosfromgem(genbank):
 			end = int(inter.split(":")[1])
 			
 			if(strand=="(-)"):
-				strand="reverse"
+				strand="(-)"
 				seqdnaprot= reverseComplement(dna[start:end])
 			else:
-				strand="forward"
+				strand="(+)"
 				seqdnaprot= str((dna[start:end]))
 
 			geneID = feat.qualifiers["db_xref"][0]
@@ -173,7 +173,7 @@ def getInfouniprot(protainID):
 	for record in SeqIO.parse(StringIO(r.text), "fasta"):
 		idfasta = record.id
 		idfasta = str(idfasta).split("|")[1]
-		break
+		#break
 	parst = parseSwissProt(idfasta)
 	return(idfasta,parst)
 
@@ -214,10 +214,40 @@ def blast(seq):
 	raw_input()
 
 
+def shortSeq(sequence,tam,sep):
+	start = sequence[:tam]
+	end = sequence[:(-1*tam)]
+	return(start+"..."+end)
+
+def juntaFuncoes(listaF,fungb,sep):
+	ret = fungb
+	for f in listaF:
+		ret += (sep+f)
+	return ret
+	
+
+def createCVSRecord(gbData,swissData,sep):
+	grauRev = "---"
+	(genInfo,protInfo,EC) = gbData
+	(geneID,NCIgual,locusTag,geneName,strand,dnaSeq) =genInfo
+	(lixo,assNCBI,protName,protLen,lixo2,protFungb,protSeq) = protInfo
+	(idSwiss,parse) = swissData
+	(protStatus,protLocal,funcaoMolec,processBiol,funcoes) = parse
+	funcoes = juntaFuncoes(funcoes,protFungb,"_")
+	return "ola"
+
+
+
 rec = parseFile("grupo6.txt")
 datas = getinfosfromgem(rec)
 
 for data in datas:
+	(gene,prot,ec)=data
+	(rev,ID_prot,prorainNAme,tam,local,function,tradu)=prot
+	swissinfo = getInfouniprot(ID_prot)
+	dataCS  = createCVSRecord(data,swissinfo,",")
+	print(dataCS)
+'''
 	(gene,prot,ec)=data
 	(rev,ID_prot,prorainNAme,tam,local,function,tradu)=prot
 	print ("-"*20)
@@ -229,6 +259,7 @@ for data in datas:
 	print("UNIPROT uniprot :" + str(swissinfo[1:]))
 	print ("-"*20)
 	a  =input()
+'''	
 '''
 seq=""
 

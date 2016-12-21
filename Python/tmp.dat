@@ -1,105 +1,63 @@
-ID   Q5ZWC1_LEGPH            Unreviewed;       384 AA.
-AC   Q5ZWC1;
-DT   23-NOV-2004, integrated into UniProtKB/TrEMBL.
-DT   23-NOV-2004, sequence version 1.
-DT   30-NOV-2016, entry version 78.
-DE   RecName: Full=Acetylornithine deacetylase {ECO:0000256|SAAS:SAAS00645894};
-DE            EC=3.-.-.- {ECO:0000256|SAAS:SAAS00658576};
-DE            EC=3.5.1.- {ECO:0000256|SAAS:SAAS00658573};
-DE            EC=3.5.1.16 {ECO:0000256|SAAS:SAAS00645882};
-GN   Name=argE {ECO:0000313|EMBL:AAU27250.1};
-GN   OrderedLocusNames=lpg1164 {ECO:0000313|EMBL:AAU27250.1};
+ID   Y1167_LEGPH             Reviewed;         161 AA.
+AC   Q5ZWB8;
+DT   28-NOV-2006, integrated into UniProtKB/Swiss-Prot.
+DT   28-NOV-2006, sequence version 2.
+DT   02-NOV-2016, entry version 63.
+DE   RecName: Full=UPF0234 protein lpg1167 {ECO:0000255|HAMAP-Rule:MF_00632};
+GN   OrderedLocusNames=lpg1167;
 OS   Legionella pneumophila subsp. pneumophila (strain Philadelphia 1 /
 OS   ATCC 33152 / DSM 7513).
 OC   Bacteria; Proteobacteria; Gammaproteobacteria; Legionellales;
 OC   Legionellaceae; Legionella.
-OX   NCBI_TaxID=272624 {ECO:0000313|EMBL:AAU27250.1, ECO:0000313|Proteomes:UP000000609};
-RN   [1] {ECO:0000313|EMBL:AAU27250.1, ECO:0000313|Proteomes:UP000000609}
+OX   NCBI_TaxID=272624;
+RN   [1]
 RP   NUCLEOTIDE SEQUENCE [LARGE SCALE GENOMIC DNA].
-RC   STRAIN=Philadelphia 1 / ATCC 33152 / DSM 7513
-RC   {ECO:0000313|Proteomes:UP000000609};
+RC   STRAIN=Philadelphia 1 / ATCC 33152 / DSM 7513;
 RX   PubMed=15448271; DOI=10.1126/science.1099776;
 RA   Chien M., Morozova I., Shi S., Sheng H., Chen J., Gomez S.M.,
 RA   Asamani G., Hill K., Nuara J., Feder M., Rineer J., Greenberg J.J.,
 RA   Steshenko V., Park S.H., Zhao B., Teplitskaya E., Edwards J.R.,
-RA   Pampou S., Georghiou A., Chou I.C., Iannuccilli W., Ulz M.E.,
+RA   Pampou S., Georghiou A., Chou I.-C., Iannuccilli W., Ulz M.E.,
 RA   Kim D.H., Geringer-Sameth A., Goldsberry C., Morozov P., Fischer S.G.,
 RA   Segal G., Qu X., Rzhetsky A., Zhang P., Cayanis E., De Jong P.J.,
 RA   Ju J., Kalachikov S., Shuman H.A., Russo J.J.;
 RT   "The genomic sequence of the accidental pathogen Legionella
 RT   pneumophila.";
 RL   Science 305:1966-1968(2004).
-CC   -!- CATALYTIC ACTIVITY: N(2)-acetyl-L-ornithine + H(2)O = acetate + L-
-CC       ornithine. {ECO:0000256|SAAS:SAAS00645876}.
-CC   -!- COFACTOR:
-CC       Name=Co(2+); Xref=ChEBI:CHEBI:48828;
-CC         Evidence={ECO:0000256|SAAS:SAAS00645898};
-CC   -!- COFACTOR:
-CC       Name=Zn(2+); Xref=ChEBI:CHEBI:29105;
-CC         Evidence={ECO:0000256|SAAS:SAAS00645889};
-CC   -!- COFACTOR:
-CC       Name=glutathione; Xref=ChEBI:CHEBI:57925;
-CC         Evidence={ECO:0000256|SAAS:SAAS00645883};
-CC   -!- PATHWAY: Amino-acid biosynthesis; L-arginine biosynthesis; L-
-CC       ornithine from N(2)-acetyl-L-ornithine (linear): step 1/1.
-CC       {ECO:0000256|SAAS:SAAS00645893}.
-CC   -!- SUBUNIT: Homodimer. {ECO:0000256|SAAS:SAAS00645896}.
-CC   -!- SIMILARITY: Belongs to the peptidase M20A family. ArgE subfamily.
-CC       {ECO:0000256|SAAS:SAAS00645884}.
+CC   -!- SIMILARITY: Belongs to the UPF0234 family. {ECO:0000255|HAMAP-
+CC       Rule:MF_00632}.
+CC   -!- SEQUENCE CAUTION:
+CC       Sequence=AAU27253.1; Type=Erroneous initiation; Evidence={ECO:0000305};
 CC   -----------------------------------------------------------------------
 CC   Copyrighted by the UniProt Consortium, see http://www.uniprot.org/terms
 CC   Distributed under the Creative Commons Attribution-NoDerivs License
 CC   -----------------------------------------------------------------------
-DR   EMBL; AE017354; AAU27250.1; -; Genomic_DNA.
-DR   RefSeq; WP_010946898.1; NC_002942.5.
-DR   RefSeq; YP_095197.1; NC_002942.5.
-DR   ProteinModelPortal; Q5ZWC1; -.
-DR   STRING; 272624.lpg1164; -.
-DR   PaxDb; Q5ZWC1; -.
-DR   EnsemblBacteria; AAU27250; AAU27250; lpg1164.
-DR   GeneID; 19832729; -.
-DR   KEGG; lpn:lpg1164; -.
-DR   PATRIC; 22329396; VBILegPne29832_1224.
-DR   eggNOG; ENOG4105CWC; Bacteria.
-DR   eggNOG; COG0624; LUCA.
-DR   HOGENOM; HOG000243772; -.
-DR   KO; K01438; -.
-DR   OMA; NTIPALC; -.
-DR   UniPathway; UPA00068; UER00110.
+DR   EMBL; AE017354; AAU27253.1; ALT_INIT; Genomic_DNA.
+DR   RefSeq; WP_010946901.1; NC_002942.5.
+DR   RefSeq; YP_095200.2; NC_002942.5.
+DR   ProteinModelPortal; Q5ZWB8; -.
+DR   STRING; 272624.lpg1167; -.
+DR   PaxDb; Q5ZWB8; -.
+DR   EnsemblBacteria; AAU27253; AAU27253; lpg1167.
+DR   GeneID; 19832732; -.
+DR   KEGG; lpn:lpg1167; -.
+DR   PATRIC; 22329406; VBILegPne29832_1229.
+DR   eggNOG; ENOG4108VPT; Bacteria.
+DR   eggNOG; COG1666; LUCA.
+DR   HOGENOM; HOG000249184; -.
+DR   KO; K09767; -.
 DR   Proteomes; UP000000609; Chromosome.
-DR   GO; GO:0005737; C:cytoplasm; IEA:InterPro.
-DR   GO; GO:0008777; F:acetylornithine deacetylase activity; IEA:UniProtKB-EC.
-DR   GO; GO:0046872; F:metal ion binding; IEA:UniProtKB-KW.
-DR   GO; GO:0008237; F:metallopeptidase activity; IEA:InterPro.
-DR   GO; GO:0006526; P:arginine biosynthetic process; IEA:UniProtKB-UniPathway.
-DR   CDD; cd03894; M20_ArgE; 1.
-DR   Gene3D; 3.30.70.360; -; 1.
-DR   InterPro; IPR010169; AcOrn-deacetyl.
-DR   InterPro; IPR001261; ArgE/DapE_CS.
-DR   InterPro; IPR002933; Peptidase_M20.
-DR   InterPro; IPR011650; Peptidase_M20_dimer.
-DR   Pfam; PF07687; M20_dimer; 1.
-DR   Pfam; PF01546; Peptidase_M20; 1.
-DR   SUPFAM; SSF55031; SSF55031; 1.
-DR   TIGRFAMs; TIGR01892; AcOrn-deacetyl; 1.
-DR   PROSITE; PS00759; ARGE_DAPE_CPG2_2; 1.
+DR   CDD; cd11740; YajQ_like; 1.
+DR   HAMAP; MF_00632; UPF0234; 1.
+DR   InterPro; IPR007551; DUF520.
+DR   Pfam; PF04461; DUF520; 1.
+DR   SUPFAM; SSF89963; SSF89963; 2.
 PE   3: Inferred from homology;
-KW   Amino-acid biosynthesis {ECO:0000256|SAAS:SAAS00645891};
-KW   Arginine biosynthesis {ECO:0000256|SAAS:SAAS00645891};
-KW   Cobalt {ECO:0000256|SAAS:SAAS00645888};
-KW   Complete proteome {ECO:0000313|Proteomes:UP000000609};
-KW   Hydrolase {ECO:0000256|SAAS:SAAS00480271,
-KW   ECO:0000313|EMBL:AAU27250.1};
-KW   Metal-binding {ECO:0000256|SAAS:SAAS00645887};
-KW   Reference proteome {ECO:0000313|Proteomes:UP000000609};
-KW   Zinc {ECO:0000256|SAAS:SAAS00645892}.
-FT   DOMAIN      172    283       M20_dimer. {ECO:0000259|Pfam:PF07687}.
-SQ   SEQUENCE   384 AA;  42707 MW;  BCE16B047B948711 CRC64;
-     MTTLDWLKQL ISFDTTSRNS NLSLIEYLAN GLNDFKINPI LIHDSKEQKA NLLATLPGKQ
-     GRLEGGIILS GHTDVVPVDG QIWDSDPFQA TVKNNKVYGR GACDMKGFIA VVMALVPQLK
-     EMNLDFPVHF AFSYDEEIGC LGVPSLIDKI VELNYQPRAC IVGEPTLMKP VVGHKGKYSY
-     RCQIHGVAAH SSLTNQGCNA IEHAASFISY LRGMANEFKK YGNRDFSYDV PYTTLTTNLI
-     KGGNAYNTIP NLCEFVFEFR NLSTDSSEDL NQKIMSYVKE ELAPSLHQDH PDSNVNLDTI
-     AKAPGLDMPI TDPFVRAAQT VCQSDKLMKV AYATEAGLFQ QAEIPTIVCG PGSIEQAHRA
-     NEYVEVEQLR LCEEFIINML RSHF
+KW   Complete proteome; Reference proteome.
+FT   CHAIN         1    161       UPF0234 protein lpg1167.
+FT                                /FTId=PRO_0000261946.
+SQ   SEQUENCE   161 AA;  18517 MW;  D35AB95FC3F885C1 CRC64;
+     MPSFDIVSKM NEVDLRNAVD NAVREVSTRF DFRGVEATIE LKDLTVTLRS ESDFQVRQLE
+     DLFRNHCSKR NLSTSGVEIE DEPVHSGKFY TLTMTFKQGI DQPTAKEIVK YIKDTKAKVQ
+     TSIQGDKVRV TGKKRDDLQE TIALLKKSNI ELPLQYENFR D
 //
