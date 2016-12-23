@@ -178,7 +178,7 @@ def getInfouniprot(protainID):
 def createCVSBlast(idprot,idBlastMatch,evalu,score,dataMatch,sep):
 	grauRev = "---"
 	(protStatus,protLocal,funcaoMolec,processBiol,funcoes,geneNameSwiss,domianTex,sequence,protName,hostName) = dataMatch
-	funcaoMolec = juntaLista (funcaoMolec, "|")
+	#funcaoMolec = juntaLista (funcaoMolec, "|")
 	processBiol = juntaLista( processBiol,"|")
 	#protName = juntaLista(protName,"|")
 	funcoes = juntaLista(funcoes,"|")
