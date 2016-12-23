@@ -133,7 +133,14 @@ def parseTXT(record):
 					bioPro.append(cools[1])
 				if (cools[0]=='C'):
 					local=cools[1]
-	return (status,local,funcMolec,bioPro,sequence)
+	funcoes =""
+	for fun in funcMolec:
+		funcoes+= fun+"|"
+	if(funcoes==""):
+		funcoes="-"
+	else:
+		funcoes=funcoes[:-1]
+	return (status,local,funcoes,bioPro,sequence)
 
 def downloadSwiss(idfasta,ext):
 	target_url = "http://www.uniprot.org/uniprot/" + idfasta+ "."+ext
@@ -173,8 +180,8 @@ def createCVSBlast(idprot,idBlastMatch,evalu,score,dataMatch,sep):
 	(protStatus,protLocal,funcaoMolec,processBiol,funcoes,geneNameSwiss,domianTex,sequence,protName,hostName) = dataMatch
 	funcaoMolec = juntaLista (funcaoMolec, "|")
 	processBiol = juntaLista( processBiol,"|")
-	protName = juntaLista(protName,"|")
-	#funcoes = juntaLista(funcoes,"|")
+	#protName = juntaLista(protName,"|")
+	funcoes = juntaLista(funcoes,"|")
 
 	if(funcaoMolec==""):
 		funcaoMolec="-"
@@ -184,8 +191,20 @@ def createCVSBlast(idprot,idBlastMatch,evalu,score,dataMatch,sep):
 		funcoes="-"
 	if(protName==""):
 		protName="-"
-	line  = idprot + sep + idBlastMatch+ sep+str(evalu)+ sep+ str(score)+ sep + protName+sep+protStatus +sep + grauRev + sep+hostName+sep + protLocal + sep 
-	line += funcaoMolec + sep +processBiol + sep +funcoes + sep +geneNameSwiss+ sep +domianTex + sep +sequence
+	line  = idprot + sep 
+	line += idBlastMatch+ sep
+	line += str(evalu)+ sep
+	line += str(score)+ sep 
+	line +=protName+sep
+	line +=protStatus +sep 
+	line +=grauRev + sep
+	line +=hostName+sep 
+	line += protLocal + sep 
+	line += funcaoMolec + sep 
+	line += processBiol + sep 
+	line += funcoes + sep 
+	line += geneNameSwiss+ sep 
+	line += domianTex + sep +sequence
 	print("LINHA: " + line)
 	return line
 
