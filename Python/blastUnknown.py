@@ -105,7 +105,6 @@ def parseXML(textxml):
 	else:
 		protName=juntaLista(namesProt,"|")
 	print("Protaina: " +protName)
-	input()
 	hostName = organismSientif+"("+organisComun+")"
 	return(ret,geneNAme,domianTex,protName,hostName)
 
