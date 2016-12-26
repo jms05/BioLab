@@ -156,12 +156,12 @@ def createFilenoBlast(geneID,geneName,geneAccNUM,locusTag,
 		grauRev,local,ec,functionsGO,processBioGO,functions,domain):
 	filename = "gene_NoBlast_" + geneID+".txt"
 	f = open(filename,"w")
-	f.write("Protain Name: " + protName +"\t"*3 + "Uniprot ID: " + idSwiss +"\n\n")
+	f.write("Protein Name: " + protName +"\t"*3 + "Uniprot ID: " + idSwiss +"\n\n")
 	funs = stringfromLis(functions,maxlin=1)
 	f.write("Functions:" + funs+ "\n\n")
 	f.write("Gene Ontology:\n\n")
 	funs = stringfromLis(functionsGO,maxlin=1,tabs=7)
-	f.write("\t"*2+"Nuclear Function: " + funs + "\n\n")
+	f.write("\t"*2+"Molecular Function: " + funs + "\n\n")
 	funs = stringfromLis(processBioGO,maxlin=1,tabs=7)
 	f.write("\t"*2+"Biological Process: " + funs + "\n\n")
 	f.write("Location: " + local+"\n\n")
@@ -179,12 +179,12 @@ def createFileBlastNotFound(geneID,geneName,geneAccNUM,locusTag,
 		grauRev,local,ec,functionsGO,processBioGO,functions,domain):
 	filename = "gene_Blast_Not_Found_" + geneID+".txt"
 	f = open(filename,"w")
-	f.write("Protain Name: " + protName +"\t"*3 + "Uniprot ID: " + idSwiss +"\n\n")
+	f.write("Protein Name: " + protName +"\t"*3 + "Uniprot ID: " + idSwiss +"\n\n")
 	funs = stringfromLis(functions,maxlin=1)
 	f.write("Functions:" + funs+ "\n\n")
 	f.write("Gene Ontology:\n\n")
 	funs = stringfromLis(functionsGO,maxlin=1,tabs=7)
-	f.write("\t"*2+"Nuclear Function: " + funs + "\n\n")
+	f.write("\t"*2+"Molecular Function: " + funs + "\n\n")
 	funs = stringfromLis(processBioGO,maxlin=1,tabs=7)
 	f.write("\t"*2+"Biological Process: " + funs + "\n\n")
 	f.write("Location: " + local+"\n\n")
@@ -203,12 +203,12 @@ def createFileBlastFound(geneID,geneName,geneAccNUM,locusTag,
 		hostBlast,localBlast,functionsBlast,processBioBlast,genNameBlast,domainBlast,seqBlast):
 	filename = "gene_Blast_Found_" + geneID+".txt"
 	f = open(filename,"w")
-	f.write("Protain Name: " + protName +"\t"*3 + "Uniprot ID: " + idSwiss +"\n\n")
+	f.write("Protein Name: " + protName +"\t"*3 + "Uniprot ID: " + idSwiss +"\n\n")
 	funs = stringfromLis(functions,maxlin=1)
 	f.write("Functions:" + funs+ "\n")
 	f.write("Gene Ontology:\n\n")
 	funs = stringfromLis(functionsGO,maxlin=1,tabs=7)
-	f.write("\t"*2+"Nuclear Function: " + funs + "\n\n")
+	f.write("\t"*2+"Molecular Function: " + funs + "\n\n")
 	funs = stringfromLis(processBioGO,maxlin=1,tabs=7)
 	f.write("\t"*2+"Biological Process: " + funs + "\n\n")
 	f.write("Location: " + local+"\n\n")
@@ -216,11 +216,11 @@ def createFileBlastFound(geneID,geneName,geneAccNUM,locusTag,
 	prot = displaySEQ( aaSeq)
 	f.write("Seq AA ("+str(protLen)+"): " + prot+"\n")
 	f.write("\n"+createBlastHead()+"\n")
-	f.write("Result: "+ idBlastMatch + "\t"+ "E-Value: "+ evalu + "\t"+ "Score: "+ score+"\n\n")
+	f.write("Result: "+ idBlastMatch + "\t"+ "E-Value: "+ evalu + "\n\n")
 	f.write("Host: " + hostBlast + "\n\n")
-	protrNamesBlast1 = stringfromLis(protrNamesBlast,maxlin=1,tabs=7)
-	f.write("Protain Name: " + protrNamesBlast1 +"\n\n")
-	funs = stringfromLis(functionsBlast,maxlin=1)
+	protrNamesBlast1 = stringfromLis(protrNamesBlast,maxlin=1,tabs=4)
+	f.write("Protein Name: " + protrNamesBlast1 +"\n\n")
+	funs = stringfromLis(functionsBlast,maxlin=1,tabs=3)
 	f.write("Functions:" + funs+ "\n\n")
 	f.write("Gene Ontology:\n\n")
 	funs = stringfromLis(processBioBlast,maxlin=1,tabs=7)
@@ -245,10 +245,10 @@ def processBlast(dataOriginal,blastData):
 				protLen,status,grauRev,local,ec,functionsGO,processBioGO,functions,domain)
 		else:
 			print("BLAST FOUND")
-			(idmatch,evalu,score,protrNames,protStatus,grauRev,host,local,functions,processBio,genName,domain,seq) = blastDatagene
+			(idmatchBlast,evaluBlast,scoreBlast,protrNamesBlast,protStatusBlast,grauRevBlast,hostBlast,localBlast,functionsBlast,processBioBlast,genNameBlast,domainBlast,seqBlast) = blastDatagene
 			createFileBlastFound(geneID,geneName,geneAccNUM,locusTag,strand,dnaSeq,AccNumNCBI,idSwiss,protName,aaSeq,
 				protLen,status,grauRev,local,ec,functionsGO,processBioGO,functions,domain,
-				idmatch,evalu,score,protrNames,protStatus,grauRev,host,local,functions,processBio,genName,domain,seq)
+				idmatchBlast,evaluBlast,scoreBlast,protrNamesBlast,protStatusBlast,grauRevBlast,hostBlast,localBlast,functionsBlast,processBioBlast,genNameBlast,domainBlast,seqBlast)
 		print("File created for "+ geneID)
 
 def processNoblast(data):
