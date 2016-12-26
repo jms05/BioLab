@@ -13,7 +13,7 @@ def getinfoFromBlastCSV(filename):
 	sep = filecsvlines[0].split("=")[1]
 	heads = filecsvlines[1].split(sep)
 	for head in heads:
-		dicheadpos[head]=i
+		dicheadpos[head.strip()]=i
 		i+=1
 	csvRecors= filecsvlines[2:]
 	parseddata = {}
@@ -29,13 +29,20 @@ def getinfoFromBlastCSV(filename):
 			grauRev = campos[dicheadpos["grauRev"]]
 			host = campos[dicheadpos["host"]].replace("()","")
 			local  =campos[dicheadpos["protLocal"]].replace("-","Unknown")
-			functions = campos[dicheadpos["funcaoMolec"]]
-			if functions == "-":
-				functions=[]
-				functions.append("Unknown")
+			functionsMolec = campos[dicheadpos["funcaoMolec"]]
+			if functionsMolec == "-":
+				functionsMolec=[]
+				functionsMolec.append("Unknown")
 			else:
-				functions = functions.split("|")
+				functionsMolec = functionsMolec.split("|")
 
+			funcoes  = campos[dicheadpos["funcoes"]]
+			if funcoes == "-":
+				funcoes=[]
+				funcoes.append("Unknown")
+			else:
+				funcoes = funcoes.split("|")
+				
 			processBio = campos[dicheadpos["processBiol"]]
 			if processBio == "-":
 				processBio=[]
@@ -51,7 +58,7 @@ def getinfoFromBlastCSV(filename):
 			else:
 				domain = domain.split("|")
 			seq = campos[dicheadpos["sequence"]]
-			parseddata[idprot] = (idmatch,evalu,score,protrNames,protStatus,grauRev,host,local,functions,processBio,genName,domain,seq)
+			parseddata[idprot] = (idmatch,evalu,score,protrNames,protStatus,grauRev,host,local,functionsMolec,processBio,genName,domain,seq,funcoes)
 		else:
 			parseddata[idprot] = (idmatch)
 
@@ -200,7 +207,7 @@ def createFileBlastFound(geneID,geneName,geneAccNUM,locusTag,
 		strand,dnaSeq,AccNumNCBI,idSwiss,protName,aaSeq,protLen,status,
 		grauRev,local,ec,functionsGO,processBioGO,functions,domain,
 		idBlastMatch,evalu,score,protrNamesBlast,protStatusBlast,grauRevBlast,
-		hostBlast,localBlast,functionsBlast,processBioBlast,genNameBlast,domainBlast,seqBlast):
+		hostBlast,localBlast,functionsGOBlast,processBioBlast,genNameBlast,domainBlast,seqBlast,funcoesBlast):
 	filename = "gene_Blast_Found_" + geneID+".txt"
 	f = open(filename,"w")
 	f.write("Protein Name: " + protName +"\t"*3 + "Uniprot ID: " + idSwiss +"\n\n")
@@ -220,9 +227,11 @@ def createFileBlastFound(geneID,geneName,geneAccNUM,locusTag,
 	f.write("Host: " + hostBlast + "\n\n")
 	protrNamesBlast1 = stringfromLis(protrNamesBlast,maxlin=1,tabs=4)
 	f.write("Protein Name: " + protrNamesBlast1 +"\n\n")
-	funs = stringfromLis(functionsBlast,maxlin=1,tabs=3)
+	funs = stringfromLis(funcoesBlast,maxlin=1,tabs=3)
 	f.write("Functions:" + funs+ "\n\n")
 	f.write("Gene Ontology:\n\n")
+	funs = stringfromLis(functionsGOBlast,maxlin=1,tabs=7)
+	f.write("\t"*2+"Molecular Function: " + funs + "\n\n")
 	funs = stringfromLis(processBioBlast,maxlin=1,tabs=7)
 	f.write("\t"*2+"Biological Process: " + funs + "\n\n")
 	f.write("Location: " + localBlast+"\n\n")
@@ -245,10 +254,10 @@ def processBlast(dataOriginal,blastData):
 				protLen,status,grauRev,local,ec,functionsGO,processBioGO,functions,domain)
 		else:
 			print("BLAST FOUND")
-			(idmatchBlast,evaluBlast,scoreBlast,protrNamesBlast,protStatusBlast,grauRevBlast,hostBlast,localBlast,functionsBlast,processBioBlast,genNameBlast,domainBlast,seqBlast) = blastDatagene
+			(idmatchBlast,evaluBlast,scoreBlast,protrNamesBlast,protStatusBlast,grauRevBlast,hostBlast,localBlast,functionsGOBlast,processBioBlast,genNameBlast,domainBlast,seqBlast,funcoesBlast) = blastDatagene
 			createFileBlastFound(geneID,geneName,geneAccNUM,locusTag,strand,dnaSeq,AccNumNCBI,idSwiss,protName,aaSeq,
 				protLen,status,grauRev,local,ec,functionsGO,processBioGO,functions,domain,
-				idmatchBlast,evaluBlast,scoreBlast,protrNamesBlast,protStatusBlast,grauRevBlast,hostBlast,localBlast,functionsBlast,processBioBlast,genNameBlast,domainBlast,seqBlast)
+				idmatchBlast,evaluBlast,scoreBlast,protrNamesBlast,protStatusBlast,grauRevBlast,hostBlast,localBlast,functionsGOBlast,processBioBlast,genNameBlast,domainBlast,seqBlast,funcoesBlast)
 		print("File created for "+ geneID)
 
 def processNoblast(data):
