@@ -6,8 +6,8 @@ from Bio import Medline
 
 def ProcurarArtigos():
     # Função que faz procura no PubMed de todos os artigos que contêm informações acerca da Neisseria gonorrhoeae
-    Entrez.email = "joaosilva1993@live.com.pt"     
-    handle = Entrez.egquery(term = "Neisseria gonorrhoeae")
+    Entrez.email = "joaosilva1995@live.com.pt"     
+    handle = Entrez.egquery(term = "Legionella Pneumophila")
     record = Entrez.read(handle)
     for row in record["eGQueryResult"]:
         if row["DbName"] == "pubmed":
@@ -16,7 +16,7 @@ def ProcurarArtigos():
     return record
 
 def DownloadArtigos():
-    handle = Entrez.esearch(db = "pubmed", term = "Neisseria gonorrhoeae", retmax = 11110) # 11110 existentes
+    handle = Entrez.esearch(db = "pubmed", term = "Legionella Pneumophila", retmax = 11110) # 11110 existentes
     record = Entrez.read(handle)
     idlist = record["IdList"]
     print(idlist)
